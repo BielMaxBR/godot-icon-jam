@@ -1,0 +1,11 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+void fragment(){
+	//COLOR = texture(TEXTURE,UV);
+	float circle = distance(vec2(0.5),UV) * 2.;
+	
+	COLOR.a = 1. - circle;
+}"

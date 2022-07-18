@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scripts/player.gd" type="Script" id=2]
+[ext_resource path="res://explosion.wav" type="AudioStream" id=4]
+
+[sub_resource type="ViewportTexture" id=5]
+
+[sub_resource type="ViewportTexture" id=6]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 14.0
+
+[node name="miner" type="KinematicBody2D"]
+light_mask = 3
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="things" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite" parent="things"]
+light_mask = 2
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 16, 32, 32 )
+
+[node name="Lantern" type="Light2D" parent="things"]
+texture = SubResource( 5 )
+texture_scale = 15.0
+mode = 3
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_buffer_size = 1024
+shadow_item_cull_mask = 3
+
+[node name="Lampiao" type="Light2D" parent="things"]
+texture = SubResource( 6 )
+texture_scale = 3.0
+color = Color( 0.988235, 1, 0.596078, 1 )
+mode = 3
+range_item_cull_mask = 2
+shadow_color = Color( 0, 0, 0, 0.533333 )
+shadow_gradient_length = 438.9
+shadow_filter = 5
+shadow_filter_smooth = 13.0
+shadow_item_cull_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 32 )
+collision_mask = 2
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="cavaste" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
